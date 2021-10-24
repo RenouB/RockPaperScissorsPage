@@ -54,8 +54,8 @@ function updatePics(userSelection, npcSelection) {
 }
 
 function updateScores(victoryCounts) {
-    let userScore = document.getElementById("user-score");
-    let npcScore = document.getElementById("npc-score");
+    let userScore = document.querySelector(".user-score");
+    let npcScore = document.querySelector(".npc-score");
     console.log(victoryCounts)
     userScore.textContent = victoryCounts["user"].toString();
     npcScore.textContent = victoryCounts["npc"].toString();

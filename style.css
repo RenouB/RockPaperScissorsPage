@@ -42,11 +42,11 @@ html, body {
     font-style: underline;
 }
 
-#user-score {
+.user-score {
     font-size:100px;
 }
 
-#npc-score {
+.npc-score {
     font-size:100px;
 }
 .image-score-container {
