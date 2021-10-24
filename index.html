@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ROCK PAPA SCIZZORS</title>
     <link rel="stylesheet" href="style.css">
-    <!-- <script src="game.js" defer></script>> -->
+    <script src="game.js" defer></script>
 </head>
 
 <body>
@@ -14,8 +14,8 @@
         <div class="display-container user">
             <span class="score-header user">USER</span>
             <div class="image-score-container">
-                <img class = "pic user" src="images/user_scissors.png">
-                <span class="score user">0</span>
+                <img class = "pic user" src="images/empty.png">
+                <span id="user-score">0</span>
             </div>
         </div>
        
@@ -23,13 +23,13 @@
             <span class="score-header npc">NPC</span>
             
             <div class="image-score-container">
-                <span class="score npc">0</span>
-                <img class="pic npc" src="images/npc_rock.png">
+                <span id="npc-score">0</span>
+                <img class="pic npc" src="images/empty.png">
             </div>
         </div>
 
     </div>
-    <span class="winner-text">NPC wins!</span>
+    <span class="winner-text"></span>
 
     <hr>
 
@@ -37,9 +37,9 @@
     <div class="selection-container-one">
         <h3>Choose your weapon.</h3>
         <div class="selection-container-two">
-        <img id="rock" class="selection-img" src="images/neutral_rock.png">
-        <img id="paper" class="selection-img" src="images/neutral_paper.png">
-        <img id="scissors" class="selection-img" src="images/neutral_scissors.png">
+        <img id="rock-button" class="selection-img" src="images/neutral_rock.png">
+        <img id="paper-button" class="selection-img" src="images/neutral_paper.png">
+        <img id="scissors-button" class="selection-img" src="images/neutral_scissors.png">
         </div>
     </div>
     <div class="footer">Renou Benteau, 2021</div>

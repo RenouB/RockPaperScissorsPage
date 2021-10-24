@@ -35,38 +35,76 @@ function userPlay() {
     return choices[input-1];
 }
 
-function getWinner(userOutcome, npcOutcome) {
+function getWinner(userSelection, npcSelection) {
 
     let outcomesDict = {"Rock": {"Rock": "tie", "Paper": "npc", "Scissors":"user"},
                     "Paper": {"Rock": "user", "Paper":"tie", "Scissors":"npc"},
                     "Scissors": {"Rock":"npc", "Paper":"user", "Scissors":"tie"}
                 };
-    return outcomesDict[userOutcome][npcOutcome];
+    return outcomesDict[userSelection][npcSelection];
 }
 
+function updatePics(userSelection, npcSelection) {
+    let userPic = document.querySelector(".pic.user");
+    let npcPic = document.querySelector(".pic.npc");
 
-function playRound() {
-    let npcOutcome = npcPlay();
-    let userOutcome = userPlay();
-    console.log(`USER: ${userOutcome} \t NPC: ${npcOutcome} `);
-    let winner = getWinner(userOutcome, npcOutcome);
-    return winner
+    userPic.src = `images/user_${userSelection.toLowerCase()}.png`
+    npcPic.src = `images/npc_${npcSelection.toLowerCase()}.png`
+
+}
+
+function updateScores(victoryCounts) {
+    let userScore = document.getElementById("user-score");
+    let npcScore = document.getElementById("npc-score");
+    console.log(victoryCounts)
+    userScore.textContent = victoryCounts["user"].toString();
+    npcScore.textContent = victoryCounts["npc"].toString();
+    return
+}
+
+function updateText(winner) {
+    let text = document.querySelector(".winner-text")
+    if (winner == "user") {text.textContent = "User wins! :)"; text.style.color=USERCOLOR;}
+    else if (winner == "npc"){text.textContent = "NPC wins :("; text.style.color=NPCCOLOR;}
+    else {text.textContent = "TIE! :/"; text.style.color="black";}
+    return
+}
+function playRound(userSelection, victoryCounts) {
+    console.log("##", victoryCounts)
+    let npcSelection = npcPlay();
+    let winner = getWinner(userSelection, npcSelection);
+    victoryCounts[winner]++;
+    updatePics(userSelection, npcSelection)
+    updateText(winner);
+    updateScores(victoryCounts);
+
+
+    return winner, victoryCounts
 
 }
 
 function main() {
+    const MAXWINS = 2;
+
     let victoryCounts = {"user":0, "npc":0};
     let winner;
-    while (victoryCounts["user"] < 2 && victoryCounts["npc"] < 2) {
-        winner =  playRound();
-        victoryCounts[winner]++
-        console.log(`WINNER: ${winner}`);
-        console.log(`SCORES: ${victoryCounts["user"]} ${victoryCounts["npc"]}`);
-    
-        console.log("\n##############")
-    }
-    alert(`${winner} WINS!!!!!`)
-    
+    let userSelection;
+    let rockButton = document.getElementById("rock-button");
+    let paperButton = document.getElementById("paper-button");
+    let scissorsButton = document.getElementById("scissors-button");
+
+
+    rockButton.addEventListener('click', () => {
+        playRound("Rock", victoryCounts);});
+    paperButton.addEventListener('click', () => {
+        playRound("Paper", victoryCounts);});
+    scissorsButton.addEventListener('click', () => {
+        playRound("Scissors", victoryCounts);});
+            
+        
+    return
 }
 
+const NPCCOLOR="#d40000";
+const USERCOLOR="#008000";
 main()
